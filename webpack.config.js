@@ -1,5 +1,7 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const isDevelopment = true;
 
 module.exports = {
@@ -15,6 +17,14 @@ module.exports = {
             options: {
               sourceMap: isDevelopment
             }
+          }
+        ]
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          {
+            loader: "file-loader"
           }
         ]
       },
@@ -36,14 +46,16 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: isDevelopment ? "[name].css" : "[name].[hash].css",
       chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css"
     }),
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: "./public/index.html",
       filename: "./index.html"
-    })
+    }),
+    new FaviconsWebpackPlugin("./public/assets/logo.png")
   ],
   resolve: {
     extensions: [".js", ".jsx", ".scss"]
