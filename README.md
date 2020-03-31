@@ -8,4 +8,4 @@ Redux 4+
 
 SASS (node-sass)
 
-Testing with Jest & Enzyme
+Testing with Jest React Testing Library
