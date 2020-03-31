@@ -1,12 +1,6 @@
 import React from "react";
-import { shallow } from "enzyme";
 import App from "../App";
+import { render, cleanup } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
 
-describe("App", () => {
-  let wrapper;
-  beforeEach(() => (wrapper = shallow(<App />)));
-
-  it("should render a <div />", () => {
-    expect(wrapper.find("div").length).toEqual(1);
-  });
-});
+afterEach(cleanup);
